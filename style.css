@@ -642,6 +642,27 @@ img {
   font-size: 0.875rem;
 }
 
+.footer-copyright {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.developer-credits {
+  font-size: 0.8rem;
+  color: rgba(197, 210, 248, 0.6);
+}
+
+.developer-credits a {
+  color: var(--accent-gold);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.developer-credits a:hover {
+  color: #FFFFFF;
+}
+
 .footer-links {
   display: flex;
   gap: 2rem;
