@@ -75,9 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const name    = document.getElementById("name").value.trim();
-      const phone   = document.getElementById("phone").value.trim();
-      const service = document.getElementById("service").value.trim();
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const selectEl = document.getElementById("service");
+      const serviceText = selectEl.options[selectEl.selectedIndex].text;
       const message = document.getElementById("message").value.trim();
 
       // Monta a mensagem formatada para o WhatsApp
@@ -85,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 Meu nome é *${name}* e tenho interesse em agendar uma consulta.
 
-⭐ *Pacote de interesse:* ${service}
+📦 *Pacote de interesse:* ${serviceText}
 
 📱 *Meu telefone:* ${phone}
 
