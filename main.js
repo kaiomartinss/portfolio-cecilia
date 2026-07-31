@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 Meu nome é *${name}* e tenho interesse em agendar uma consulta.
 
-📦 *Pacote de interesse:* ${service}
+⭐ *Pacote de interesse:* ${service}
 
 📱 *Meu telefone:* ${phone}
 
