@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elena Vance — Consultoria de Imagem & Estilo</title>
+  <meta name="description" content="Consultoria de imagem pessoal e estratégica. Redescubra sua identidade visual com elegância e propósito.">
+
+  <!-- Google Fonts: Cormorant Garamond (Serif Luxury High-End) + Plus Jakarta Sans (Sans Modern) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Lenis CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos Customizados -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Smooth Scroll Wrapper (Lenis) -->
+  <div id="app">
+
+    <!-- Header / Navegação -->
+    <header class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="brand-box">
+          <a href="#hero" class="brand-logo">CECÍLIA PALITOT</a>
+          <div class="social-icons-header">
+            <a href="https://instagram.com/ceciliapalitot/" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon-btn">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/5583986668183" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-icon-btn">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+        
+        <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Abrir Menu">
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="nav-links" id="nav-menu">
+          <a href="#about" class="nav-link">Coloração Pessoal</a>
+          <a href="#services" class="nav-link">Pacotes &amp; Investimento</a>
+          <a href="#contact" class="nav-link nav-btn">Agendar Consulta</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section Fullscreen Background -->
+    <section class="hero hero-fullscreen" id="hero">
+      <div class="hero-bg-image">
+        <img src="images/hero.jpg" alt="Cecília Palitot" class="hero-bg-img">
+      </div>
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-content text-center">
+        <span class="sub-tag hero-anim">CONSULTORIA DE IMAGEM &amp; ESTILO</span>
+        <h1 class="hero-title hero-anim">Sua beleza natural em máxima evidência.</h1>
+        <p class="hero-description hero-anim">
+          Análise de Coloração Pessoal &amp; Estratégia Visual sob medida para valorizar a sua essência com sofisticação e propósito.
+        </p>
+        <div class="hero-cta hero-anim">
+          <a href="#services" class="btn btn-outline-light">Ver Pacotes</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Coloração Pessoal -->
+    <section class="about section-padding" id="about">
+      <div class="container grid-2">
+        <div class="about-image-box split-anim">
+          <img src="images/hero2.jpg" alt="Análise de Coloração Pessoal" class="about-img">
+        </div>
+        <div class="about-text-box">
+          <span class="sub-tag split-anim">MÉTODO E HARMONIA</span>
+          <h2 class="section-title split-anim">Sua beleza natural em evidência.</h2>
+          <p class="split-anim">
+            A Coloração Pessoal é uma análise que identifica quais cores harmonizam naturalmente com as características da sua pele, olhos e cabelos. O objetivo é descobrir a sua cartela de cores ideal para valorizar sua beleza, trazendo mais luminosidade, equilíbrio e harmonia para a imagem.
+          </p>
+          <p class="split-anim">
+            Com o resultado da análise, fica mais fácil escolher roupas, maquiagens, acessórios e até a coloração dos cabelos, tornando suas compras mais assertivas e sua imagem mais alinhada com quem você é.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services / Pacotes & Investimento -->
+    <section class="services section-padding" id="services">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="sub-tag">INVESTIMENTO &amp; EXPERIÊNCIAS</span>
+          <h2 class="section-title">Escolha o seu Pacote</h2>
+          <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem;">
+            Propostas desenvolvidas para atender o seu momento e os seus objetivos de imagem.
+          </p>
+        </div>
+        <div class="services-grid">
+          
+             <!-- Pacote Básico -->
+          <div class="service-card card-with-bg">
+            <div class="card-bg-image">
+              <img src="images/basico.jpg" alt="Pacote Básico">
+            </div>
+            <div class="card-bg-overlay"></div>
+            <div class="card-content-inner">
+              <span class="card-num">✨ R$ 280</span>
+              <h3 class="card-title">Pacote Básico</h3>
+              <p class="card-desc">Ideal para quem deseja descobrir sua cartela de cores e começar a aplicar esse conhecimento no dia a dia.</p>
+              <div class="card-target">
+                <strong>Para quem é indicado?</strong>
+                <p>Para quem quer conhecer as cores que mais valorizam sua beleza e ter um guia digital para fazer escolhas mais harmoniosas.</p>
+              </div>
+              <a href="#contact" data-package="basico" class="btn btn-primary btn-block">Selecionar Básico</a>
+            </div>
+          </div>
+
+          <!-- Pacote Essencial -->
+          <div class="service-card service-featured card-with-bg">
+            <div class="card-bg-image">
+              <img src="images/essencial.jpg" alt="Pacote Essencial">
+            </div>
+            <div class="card-bg-overlay"></div>
+            <div class="card-content-inner">
+              <span class="card-num">✨ R$ 380</span>
+              <h3 class="card-title">Pacote Essencial</h3>
+              <p class="card-desc">Uma experiência mais completa para quem deseja ter sua cartela física em mãos e utilizar as cores com mais segurança.</p>
+              <div class="card-target">
+                <strong>Para quem é indicado?</strong>
+                <p>Para quem deseja praticidade no dia a dia, levando a cartela para compras de roupas, maquiagem e acessórios.</p>
+              </div>
+              <a href="#contact" data-package="essencial" class="btn btn-primary btn-block">Selecionar Essencial</a>
+            </div>
+          </div>
+
+          <!-- Pacote Imagem & Estilo -->
+          <div class="service-card card-with-bg">
+            <div class="card-bg-image">
+              <img src="images/completo.jpg" alt="Pacote Imagem & Estilo">
+            </div>
+            <div class="card-bg-overlay"></div>
+            <div class="card-content-inner">
+              <span class="card-num">✨ R$ 450</span>
+              <h3 class="card-title">Imagem &amp; Estilo</h3>
+              <p class="card-desc">A experiência mais completa, unindo Coloração Pessoal e construção de imagem através das cores e comunicação não verbal.</p>
+              <div class="card-target">
+                <strong>Para quem é indicado?</strong>
+                <p>Para quem deseja alinhar cores, estilo e imagem pessoal, criando uma comunicação visual mais estratégica, autêntica e coerente.</p>
+              </div>
+              <a href="#contact" data-package="imagem_estilo" class="btn btn-primary btn-block">Selecionar Completo</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="help-box text-center" style="margin-top: 4rem; padding: 2rem; background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+          <p style="color: var(--text-muted); font-size: 1.05rem;">
+            ✨ <em>Se ficou em dúvida sobre qual pacote escolher, me conte um pouco sobre o que você procura e eu te ajudo a encontrar a opção ideal para você.</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-padding" id="contact">
+      <div class="container grid-2">
+        <div class="contact-info">
+          <span class="sub-tag">INICIE SUA JORNADA</span>
+          <h2 class="section-title">Pronta para transformar seu posicionamento?</h2>
+          <p>Entre em contato para agendarmos uma conversa inicial e entender as suas necessidades.</p>
+          <div class="contact-details">
+            <p><strong>Email:</strong> ceciliapalitot5@gmail.com </p>
+            <p><strong>Atendimento:</strong> João Pessoa — PB | Presencial &amp; Online</p>
+          </div>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <input type="text" id="name" placeholder="Seu nome" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="phone" placeholder="Seu telefone" required>
+          </div>
+          <div class="form-group">
+            <select id="service" required>
+              <option value="" disabled selected>Selecione o serviço desejado</option>
+              <option value="✨ Pacote Básico (R$ 280)">✨ Pacote Básico (R$ 280)</option>
+              <option value="✨ Pacote Essencial (R$ 380)">✨ Pacote Essencial (R$ 380)</option>
+              <option value="✨ Pacote Imagem & Estilo (R$ 450)">✨ Pacote Imagem &amp; Estilo (R$ 450)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="4" placeholder="Fale um pouco sobre seus objetivos..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Solicitar Atendimento</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-content">
+        <p>&copy; 2026 Cecília Palitot — Consultoria de Imagem &amp; Estilo. Todos os direitos reservados.</p>
+        <div class="footer-links">
+          <a href="https://instagram.com/ceciliapalitot/">Instagram</a>
+          <a href="https://wa.me/5583986668183">WhatsApp</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts: GSAP + ScrollTrigger + Lenis.js + App Logic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
