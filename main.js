@@ -79,21 +79,30 @@ document.addEventListener("DOMContentLoaded", () => {
       const phone = document.getElementById("phone").value.trim();
       const selectEl = document.getElementById("service");
       const serviceText = selectEl.options[selectEl.selectedIndex].text;
+      const dateVal = document.getElementById("date")?.value || "";
+      const timeVal = document.getElementById("time")?.value || "";
       const message = document.getElementById("message").value.trim();
 
+      // Formatar data para DD/MM/YYYY se informada
+      let formattedDate = dateVal;
+      if (dateVal) {
+        const parts = dateVal.split("-");
+        if (parts.length === 3) {
+          formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+        }
+      }
+
       // Monta a mensagem formatada para o WhatsApp
-      const text = `Olá, Cecília! 💜
+      let text = `Olá, Cecília! 💜\n\nMeu nome é *${name}* e tenho interesse em agendar uma consulta.\n\n📌 *Pacote de interesse:* ${serviceText}\n📱 *Meu telefone:* ${phone}`;
 
-Meu nome é *${name}* e tenho interesse em agendar uma consulta.
+      if (formattedDate) {
+        text += `\n📅 *Data preferida:* ${formattedDate}`;
+      }
+      if (timeVal) {
+        text += `\n⏰ *Horário preferido:* ${timeVal}`;
+      }
 
-📌 *Pacote de interesse:* ${serviceText}
-
-📱 *Meu telefone:* ${phone}
-
-💬 *Sobre mim:*
-${message}
-
-Aguardo seu retorno! 😊`;
+      text += `\n\n💬 *Sobre mim:*\n${message}\n\nAguardo seu retorno! 😊`;
 
       // Número do WhatsApp da Cecília (sem + e sem espaços)
       const whatsappNumber = "5583986668183";
@@ -152,4 +161,62 @@ Aguardo seu retorno! 😊`;
       });
     });
   }
+
+  // 9. Clima em Tempo Real para João Pessoa — PB (Open-Meteo API)
+  async function fetchWeather() {
+    const tempEl = document.getElementById("weather-temp");
+    const descEl = document.getElementById("weather-desc");
+    const iconEl = document.getElementById("weather-icon");
+
+    if (!tempEl || !descEl || !iconEl) return;
+
+    try {
+      const lat = -7.1153;
+      const lon = -34.861;
+      const response = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=America%2FFortaleza`
+      );
+
+      if (!response.ok) throw new Error("Falha na requisição");
+
+      const data = await response.json();
+      const current = data.current;
+      if (!current) return;
+
+      const temp = Math.round(current.temperature_2m);
+      const code = current.weather_code;
+
+      tempEl.textContent = `${temp}°C`;
+
+      const weatherMap = {
+        0: { desc: "Céu limpo e ensolarado", icon: "fa-sun" },
+        1: { desc: "Predominantemente ensolarado", icon: "fa-sun" },
+        2: { desc: "Parcialmente nublado", icon: "fa-cloud-sun" },
+        3: { desc: "Nublado", icon: "fa-cloud" },
+        45: { desc: "Nevoeiro", icon: "fa-smog" },
+        48: { desc: "Nevoeiro", icon: "fa-smog" },
+        51: { desc: "Garoa leve", icon: "fa-cloud-rain" },
+        53: { desc: "Garoa moderada", icon: "fa-cloud-rain" },
+        55: { desc: "Garoa intensa", icon: "fa-cloud-showers-heavy" },
+        61: { desc: "Chuva leve", icon: "fa-cloud-rain" },
+        63: { desc: "Chuva moderada", icon: "fa-cloud-showers-heavy" },
+        65: { desc: "Chuva forte", icon: "fa-cloud-showers-water" },
+        80: { desc: "Pancadas de chuva leves", icon: "fa-cloud-rain" },
+        81: { desc: "Pancadas de chuva", icon: "fa-cloud-showers-heavy" },
+        82: { desc: "Pancadas de chuva fortes", icon: "fa-cloud-showers-water" },
+        95: { desc: "Trovoada", icon: "fa-cloud-bolt" }
+      };
+
+      const info = weatherMap[code] || { desc: "Tempo agradável", icon: "fa-cloud-sun" };
+      descEl.textContent = info.desc;
+      iconEl.className = `fa-solid ${info.icon} weather-icon`;
+    } catch (err) {
+      console.warn("Não foi possível carregar a previsão em tempo real:", err);
+      tempEl.textContent = "28°C";
+      descEl.textContent = "Ensolarado";
+      iconEl.className = "fa-solid fa-sun weather-icon";
+    }
+  }
+
+  fetchWeather();
 });

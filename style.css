@@ -592,6 +592,63 @@ img {
   color: var(--text-main);
 }
 
+/* Weather Info Box */
+.weather-info-box {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s var(--transition-smooth);
+}
+
+.weather-info-box:hover {
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.weather-icon-temp {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.weather-icon {
+  font-size: 2rem;
+  color: var(--accent-gold);
+}
+
+.weather-temp {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.weather-city {
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.weather-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
 .contact-form {
   background: var(--bg-card);
   padding: 3rem;
@@ -601,6 +658,28 @@ img {
 
 .form-group {
   margin-bottom: 1.5rem;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 576px) {
+  .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
 }
 
 .form-group input,
@@ -616,6 +695,11 @@ img {
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.3s ease;
+}
+
+input[type="date"],
+input[type="time"] {
+  color-scheme: dark;
 }
 
 .form-group input:focus,
