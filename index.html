@@ -48,6 +48,7 @@
 
         <nav class="nav-links" id="nav-menu">
           <a href="#about" class="nav-link">Coloração Pessoal</a>
+          <a href="#weather-section" class="nav-link">Luz Natural &amp; Clima</a>
           <a href="#services" class="nav-link">Pacotes &amp; Investimento</a>
           <a href="#contact" class="nav-link nav-btn">Agendar Consulta</a>
         </nav>
@@ -82,7 +83,7 @@
           <span class="sub-tag split-anim">MÉTODO E HARMONIA</span>
           <h2 class="section-title split-anim">Sua beleza natural em evidência.</h2>
           <p class="split-anim">
-            A Coloração Pessoal é uma análise que identifica quais cores harmonizam naturalmente com as características da sua pele, olhos e cabelos. O objetivo é descobrir a sua cartela de cores ideal para valorizar sua beleza, trazendo mais luminosidade, equilíbrio e harmonia para a imagem.
+            A Coloração Pessoal é uma análise que identifica quais cores harmonizam naturally com as características da sua pele, olhos e cabelos. O objetivo é descobrir a sua cartela de cores ideal para valorizar sua beleza, trazendo mais luminosidade, equilíbrio e harmonia para a imagem.
           </p>
           <p class="split-anim">
             Com o resultado da análise, fica mais fácil escolher roupas, maquiagens, acessórios e até a coloração dos cabelos, tornando suas compras mais assertivas e sua imagem mais alinhada com quem você é.
@@ -163,6 +164,46 @@
           <p style="color: var(--text-muted); font-size: 1.05rem;">
             ✨ <em>Se ficou em dúvida sobre qual pacote escolher, me conte um pouco sobre o que você procura e eu te ajudo a encontrar a opção ideal para você.</em>
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weather & Natural Light Advice Section -->
+    <section class="weather-section section-padding" id="weather-section">
+      <div class="container">
+        <div class="sun-importance-card card-with-bg split-anim">
+          <div class="card-bg-image">
+            <img src="images/cartelas.jpg" alt="Cartelas de Coloração Pessoal" loading="lazy" width="1200" height="600">
+          </div>
+          <div class="card-bg-overlay"></div>
+          <div class="card-content-inner sun-importance-text">
+            <span class="sub-tag">LUMINOSIDADE FUNDAMENTAL</span>
+            <h2 class="section-title">Por que o Sol e a Luz Natural são Essenciais?</h2>
+            <p>
+              A análise presencial de Coloração Pessoal precisa ser realizada sob a incidência de <strong>luz natural do dia (idealmente com sol ou dia claro)</strong>. A iluminação artificial (lâmpadas amarelas ou brancas) altera a percepção dos pigmentos e sutilezas da sua pele, distorcendo o resultado.
+            </p>
+            <p>
+              Para garantirmos 100% de precisão na descoberta da sua cartela perfeita, acompanhe abaixo a previsão do tempo para esta semana em João Pessoa e escolha o melhor dia para o seu agendamento!
+            </p>
+          </div>
+        </div>
+
+        <!-- Weekly Forecast Grid -->
+        <div class="weekly-forecast-wrapper">
+          <div class="section-header text-center">
+            <span class="sub-tag">PLANEJE SEU ATENDIMENTO</span>
+            <h3 class="section-title">Previsão do Tempo para a Semana</h3>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem;">
+              João Pessoa — PB | Atualizado para os próximos 7 dias
+            </p>
+          </div>
+
+          <div class="weekly-grid" id="weekly-forecast-grid">
+            <!-- Gerado via JavaScript -->
+            <div class="weekly-loading">
+              <i class="fa-solid fa-circle-notch fa-spin"></i> Carregando previsão da semana...
+            </div>
+          </div>
         </div>
       </div>
     </section>

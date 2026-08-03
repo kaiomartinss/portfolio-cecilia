@@ -162,59 +162,113 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 9. Clima em Tempo Real para João Pessoa — PB (Open-Meteo API)
+  // 9. Clima em Tempo Real & Previsão Semanal (Open-Meteo API)
   async function fetchWeather() {
     const tempEl = document.getElementById("weather-temp");
     const descEl = document.getElementById("weather-desc");
     const iconEl = document.getElementById("weather-icon");
+    const weeklyGrid = document.getElementById("weekly-forecast-grid");
 
-    if (!tempEl || !descEl || !iconEl) return;
+    const lat = -7.1153;
+    const lon = -34.861;
 
+    const weatherMap = {
+      0: { desc: "Ensolarado", icon: "fa-sun" },
+      1: { desc: "Predominantemente ensolarado", icon: "fa-sun" },
+      2: { desc: "Parcialmente nublado", icon: "fa-cloud-sun" },
+      3: { desc: "Nublado", icon: "fa-cloud" },
+      45: { desc: "Nevoeiro", icon: "fa-smog" },
+      48: { desc: "Nevoeiro", icon: "fa-smog" },
+      51: { desc: "Garoa leve", icon: "fa-cloud-rain" },
+      53: { desc: "Garoa moderada", icon: "fa-cloud-rain" },
+      55: { desc: "Garoa intensa", icon: "fa-cloud-showers-heavy" },
+      61: { desc: "Chuva leve", icon: "fa-cloud-rain" },
+      63: { desc: "Chuva moderada", icon: "fa-cloud-showers-heavy" },
+      65: { desc: "Chuva forte", icon: "fa-cloud-showers-water" },
+      80: { desc: "Pancadas leves", icon: "fa-cloud-rain" },
+      81: { desc: "Pancadas de chuva", icon: "fa-cloud-showers-heavy" },
+      82: { desc: "Pancadas fortes", icon: "fa-cloud-showers-water" },
+      95: { desc: "Trovoada", icon: "fa-cloud-bolt" }
+    };
+
+    const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+
+    // 9.1 Clima Atual no Formulário
     try {
-      const lat = -7.1153;
-      const lon = -34.861;
-      const response = await fetch(
+      const responseCurrent = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=America%2FFortaleza`
       );
-
-      if (!response.ok) throw new Error("Falha na requisição");
-
-      const data = await response.json();
-      const current = data.current;
-      if (!current) return;
-
-      const temp = Math.round(current.temperature_2m);
-      const code = current.weather_code;
-
-      tempEl.textContent = `${temp}°C`;
-
-      const weatherMap = {
-        0: { desc: "Céu limpo e ensolarado", icon: "fa-sun" },
-        1: { desc: "Predominantemente ensolarado", icon: "fa-sun" },
-        2: { desc: "Parcialmente nublado", icon: "fa-cloud-sun" },
-        3: { desc: "Nublado", icon: "fa-cloud" },
-        45: { desc: "Nevoeiro", icon: "fa-smog" },
-        48: { desc: "Nevoeiro", icon: "fa-smog" },
-        51: { desc: "Garoa leve", icon: "fa-cloud-rain" },
-        53: { desc: "Garoa moderada", icon: "fa-cloud-rain" },
-        55: { desc: "Garoa intensa", icon: "fa-cloud-showers-heavy" },
-        61: { desc: "Chuva leve", icon: "fa-cloud-rain" },
-        63: { desc: "Chuva moderada", icon: "fa-cloud-showers-heavy" },
-        65: { desc: "Chuva forte", icon: "fa-cloud-showers-water" },
-        80: { desc: "Pancadas de chuva leves", icon: "fa-cloud-rain" },
-        81: { desc: "Pancadas de chuva", icon: "fa-cloud-showers-heavy" },
-        82: { desc: "Pancadas de chuva fortes", icon: "fa-cloud-showers-water" },
-        95: { desc: "Trovoada", icon: "fa-cloud-bolt" }
-      };
-
-      const info = weatherMap[code] || { desc: "Tempo agradável", icon: "fa-cloud-sun" };
-      descEl.textContent = info.desc;
-      iconEl.className = `fa-solid ${info.icon} weather-icon`;
+      if (responseCurrent.ok) {
+        const data = await responseCurrent.json();
+        if (data.current) {
+          const temp = Math.round(data.current.temperature_2m);
+          const code = data.current.weather_code;
+          if (tempEl) tempEl.textContent = `${temp}°C`;
+          const info = weatherMap[code] || { desc: "Tempo agradável", icon: "fa-cloud-sun" };
+          if (descEl) descEl.textContent = info.desc;
+          if (iconEl) iconEl.className = `fa-solid ${info.icon} weather-icon`;
+        }
+      }
     } catch (err) {
-      console.warn("Não foi possível carregar a previsão em tempo real:", err);
-      tempEl.textContent = "28°C";
-      descEl.textContent = "Ensolarado";
-      iconEl.className = "fa-solid fa-sun weather-icon";
+      console.warn("Erro ao buscar clima atual:", err);
+      if (tempEl) tempEl.textContent = "28°C";
+      if (descEl) descEl.textContent = "Ensolarado";
+      if (iconEl) iconEl.className = "fa-solid fa-sun weather-icon";
+    }
+
+    // 9.2 Previsão Semanal (Daily 7 dias)
+    if (!weeklyGrid) return;
+
+    try {
+      const responseDaily = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=America%2FFortaleza`
+      );
+
+      if (!responseDaily.ok) throw new Error("Erro na previsão semanal");
+
+      const data = await responseDaily.json();
+      const daily = data.daily;
+
+      if (!daily || !daily.time) throw new Error("Dados semanais indisponíveis");
+
+      let html = "";
+      for (let i = 0; i < daily.time.length; i++) {
+        const dateObj = new Date(daily.time[i] + "T00:00:00");
+        const dayName = daysOfWeek[dateObj.getDay()];
+        const dayFormatted = `${dateObj.getDate().toString().padStart(2, '0')}/${(dateObj.getMonth() + 1).toString().padStart(2, '0')}`;
+        
+        const code = daily.weather_code[i];
+        const maxTemp = Math.round(daily.temperature_2m_max[i]);
+        const minTemp = Math.round(daily.temperature_2m_min[i]);
+
+        const info = weatherMap[code] || { desc: "Ensolarado", icon: "fa-sun" };
+
+        html += `
+          <div class="day-card">
+            <div class="day-header">
+              <span class="day-name">${dayName}</span>
+              <span class="day-date">${dayFormatted}</span>
+            </div>
+            <div class="day-icon">
+              <i class="fa-solid ${info.icon}"></i>
+            </div>
+            <div class="day-temps">
+              <span class="max-temp">${maxTemp}°</span>
+              <span class="min-temp">${minTemp}°</span>
+            </div>
+            <span class="day-desc">${info.desc}</span>
+          </div>
+        `;
+      }
+
+      weeklyGrid.innerHTML = html;
+    } catch (err) {
+      console.warn("Erro ao buscar previsão semanal:", err);
+      weeklyGrid.innerHTML = `
+        <div class="weekly-loading">
+          <p>Previsão diária indisponível no momento. Recomenda-se agendar em dias claros entre 09h e 15h.</p>
+        </div>
+      `;
     }
   }
 
